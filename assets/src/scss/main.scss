@@ -1,0 +1,27 @@
+
+// Основное 
+@import '_general-style/_normalize.scss';	// Сброс стилей
+@import '_general-style/_my-style.scss'; 	// Мои основные стили
+@import '_general-style/_variables.scss'; 	// Переменные
+
+
+// Стили бибилиотек
+@import '_libs/jquery.scrollbar.scss';		// Стили скроллбара 
+
+
+// Миксины 
+@import '_mixins/_breakpoints.scss'; 		// Миксины для media-запросов breakpoints
+
+
+// Стили отдельных блоков
+@import '_general-style/_style.scss'; 		// Общие стили элементов
+@import '_block-styles/_nav.scss'; 			// Стили вкладок навигации
+@import '_block-styles/_profile.scss'; 		// Стили раздела "Профиль"
+@import '_block-styles/_friends.scss'; 		// Стили раздела "Друзья пользователя"
+
+
+// @include media-breakpoint-up(md) 
+
+
+
+

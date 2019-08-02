@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/main.min.css">
+    <title>Профиль пользователя</title>
+</head>
+
+<body>
+    <main class="main">
+        <header class="hidden">
+            <h1>Профиль пользователя</h1>
+        </header>
+        <div class="profile-block">
+            <nav class="nav-tabs">
+                <ul class="nav-tabs__list">
+                    <li class="nav-tabs__item"><a class="nav-tabs__link active" href="#profile">Профиль</a></li>
+                    <li class="nav-tabs__item"><a class="nav-tabs__link" href="#friends">Друзья пользователя</a></li>
+                </ul>
+            </nav>
+            <div class="profile-block__content">
+                @@include('_html/_profile.html')
+                @@include('_html/_friends.html')
+            </div>
+        </div>
+    </main>
+    <script src="js/main.min.js" type="text/javascript"></script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+.friends {
+    display: none;
+}
+
+.friends__list {
+    max-height: 250px;
+    overflow-y: scroll;
+    text-align: justify;
+
+}
+
+.friends__item {
+    display: inline-flex;
+    margin-bottom: 31px;
+    max-width: 220px;
+    width: 220px;
+}
+
+.friend__photo-wp {
+    height: 62px;
+    width: 62px;
+    margin-right: 17px;
+    font-size: 13px;
+}
+
+.friend__name {
+    color: #1574af;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.friend__city {
+    color: #373737;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.friend__online {
+    color: #2f8a26;
+    font-size: 10px;
+    font-style: italic;
+}
+
+// ****************************
+//  Переопределение scrollbar
+
+.scrollbar-outer>.scroll-element .scroll-bar {
+    background-color: #0f7bb1;
+
+    &:hover {
+        background-color: darken(#0f7bb1, 5%);
+    }
+}
+
+.scrollbar-outer>.scroll-element.scroll-draggable .scroll-bar {
+    background-color: darken(#0f7bb1, 5%);
+}
+
+.scrollbar-outer>.scroll-element .scroll-element_track {
+    background-color: #ededed;
+}
+
+.scrollbar-outer>.scroll-element.scroll-y .scroll-element_outer {
+    width: 5px;
+}
+
+.scrollbar-outer>.scroll-element .scroll-element_outer,
+.scrollbar-outer>.scroll-element .scroll-element_track,
+.scrollbar-outer>.scroll-element .scroll-bar {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
