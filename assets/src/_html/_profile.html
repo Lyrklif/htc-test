@@ -3,10 +3,12 @@
         <div class="avatar profile__photo-wp">
             <img class="avatar__img profile__photo" src="img/user_photo.png" alt="Фото профиля">
         </div>
-        <button class="profile__friended">Добавить в друзья</button>
+        <button class="profile__friended btn-add">Добавить в друзья</button>
     </div>
     <div class="profile__col-2">
-        <h2 class="user-name profile__name" contenteditable>Виталя Гора</h2>
+        <div class="editBox">
+            <h2 class="user-name profile__name editText">Виталя Гора</h2>
+        </div>
         <p class="user-city profile__city">г. Нижние Шахты</p>
         <table class="profile__info">
             <tbody>
@@ -16,11 +18,11 @@
                 </tr>
                 <tr>
                     <td class="profile__title">Телефон</td>
-                    <td class="profile__content" contenteditable>+7 (440) 554-32-12</td>
+                    <td class="profile__content editText">+7 (440) 554-32-12</td>
                 </tr>
                 <tr>
                     <td class="profile__title">E-mail</td>
-                    <td class="profile__content profile__email" contenteditable>vitalya@gora.ru</td>
+                    <td class="profile__content profile__email editText">vitalya@gora.ru</td>
                 </tr>
                 <tr class="interests">
                     <td class="profile__title">Интересы</td>
@@ -35,8 +37,8 @@
             </tbody>
         </table>
         <div class="profile__add-interests">
-            <input class="profile__input-interest" type="text" name="interes" placeholder="новый интерес">
-            <button class="profile__add-interest">Добавить интерес</button>
+            <input class="profile__input-interest" type="text" name="input-interes"  placeholder="новый интерес" minlength="2" maxlength="20" title="Можно ввести от 2 до 20 символов.">
+            <input class="profile__add-interest btn-add" type="submit" value="Добавить интерес"></input>
         </div>
     </div>
 </section>

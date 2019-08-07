@@ -1,23 +1,22 @@
-
-// Основное 
-@import '_general-style/_normalize.scss';	// Сброс стилей
-@import '_general-style/_my-style.scss'; 	// Мои основные стили
-@import '_general-style/_variables.scss'; 	// Переменные
+// Порядок подключения SCSS-файлов  
 
 
-// Стили бибилиотек
-@import '_libs/jquery.scrollbar.scss';		// Стили скроллбара 
+// Библиотеки 
+@import '_components/_libs/normalize.scss';			// Сброс стилей
+@import '_components/_libs/jquery.scrollbar.scss';	// Стили скроллбара 
 
 
-// Миксины 
-@import '_mixins/_breakpoints.scss'; 		// Миксины для media-запросов breakpoints
+// Компоненты
+@import '_components/_variables.scss'; 				// Переменные
+@import '_components/_breakpoints.scss'; 			// Миксины для media-запросов breakpoints
+@import '_components/_functions.scss';				// Функции 
+@import '_components/_my-style.scss'; 				// Основные стили
 
 
 // Стили отдельных блоков
-@import '_general-style/_style.scss'; 		// Общие стили элементов
-@import '_block-styles/_nav.scss'; 			// Стили вкладок навигации
-@import '_block-styles/_profile.scss'; 		// Стили раздела "Профиль"
-@import '_block-styles/_friends.scss'; 		// Стили раздела "Друзья пользователя"
+@import '_sections/_nav.scss'; 						// Стили вкладок навигации
+@import '_sections/_profile.scss'; 					// Стили раздела "Профиль"
+@import '_sections/_friends.scss'; 					// Стили раздела "Друзья пользователя"
 
 
 // @include media-breakpoint-up(md) 

@@ -1,5 +1,5 @@
 .profile {
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(x480) {
         display: flex;
     }
 }
@@ -10,7 +10,7 @@
     width: $user-photo-width;
     min-width: $user-photo-width;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(x480) {
         margin: 0 20px 0 0;
     }
 }
@@ -20,7 +20,7 @@
     width: $user-photo-width;
     margin-bottom: 5px;
     box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.32);
-    border-radius: 2px;
+    // border-radius: 2px;
 }
 
 .profile__name {
@@ -33,19 +33,19 @@
 .profile__city {
     font-size: 11px;
     color: #757575;
-    margin-top: 2px;
+    margin-top: 1px;
 }
 
 .profile__info {
     border-spacing: 0;
     border-collapse: collapse;
-    margin-top: 17px;
+    margin-top: 16px;
 
     tr {
-        margin-top: 10px;
+        margin-top: 9px;
         display: block;
 
-        @include media-breakpoint-up(sm) {
+        @include media-breakpoint-up(x350) {
             display: flex;
 
         }
@@ -68,7 +68,7 @@
     font-weight: bold;
     display: block;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(x350) {
         width: 130px;
         max-width: 130px;
         margin-right: 32px;
@@ -85,26 +85,17 @@
     text-decoration: underline;
 }
 
+
 .profile__friended {
-    font-size: 12px;
-    color: $white-color;
-    background: #e65400;
-    border: none;
-    min-height: 30px;
-    width: 100%;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.38);
-    border-radius: 2px;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.43);
     padding: 0 5px;
 }
-
 
 
 .profile__add-interests {
     display: block;
 
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(x350) {
         display: flex;
     }
 }
@@ -112,7 +103,7 @@
 
 .profile__interests {
     cursor: default;
-    margin: 6px 0;
+    margin: 6px 2px 6px 0;
 }
 
 .interests__item {
@@ -120,7 +111,7 @@
     border: 1px solid #d5d5d5;
     color: #1574af;
     font-size: 12px;
-    padding: 5px 10px 5px 10px;
+    padding: 5px 8px 5px 8px;
     margin: 0 2px 5px 0;
     cursor: pointer;
     border-radius: 3px;
@@ -135,31 +126,24 @@
 .profile__input-interest {
     border: 1px solid #d5d5d5;
     border-radius: 3px;
-    padding-left: 5px;
+    padding: 1px 5px;
     font-size: 12px;
     margin-right: 10px;
     height: 30px;
     width: 100%;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(x350) {
         width: auto;
     }
 }
 
 .profile__add-interest {
-    font-size: 12px;
-    color: $white-color;
-    background: #e65400;
-    border: none;
-    min-height: 30px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.38);
-    border-radius: 2px;
     padding: 0 15px;
     margin-top: 10px;
-    width: 100%;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(x350) {
         width: auto;
         margin-top: 0;
     }
 }
+

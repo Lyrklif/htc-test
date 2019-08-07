@@ -3,24 +3,36 @@
 }
 
 .friends__list {
-    max-height: 250px;
+    max-height: $friends-max-height-mobile;
     overflow-y: scroll;
-    text-align: justify;
+    // text-align: justify;
 
+    @include media-breakpoint-up(sm) {
+        max-height: $friends-max-height;
+    }
 }
 
 .friends__item {
     display: inline-flex;
     margin-bottom: 31px;
-    max-width: 220px;
-    width: 220px;
+    max-width: $friends-item-width;
+    width: $friends-item-width;
 }
 
 .friend__photo-wp {
-    height: 62px;
-    width: 62px;
+    height: $friends-avatar-height;
+    max-height: $friends-avatar-height;
+    width: $friends-avatar-width;
+    max-width: $friends-avatar-width;
+
     margin-right: 17px;
     font-size: 13px;
+
+}
+
+.friend__info {
+    position: relative;
+    padding-bottom: 15px;
 }
 
 .friend__name {
@@ -28,18 +40,24 @@
     font-size: 13px;
     font-weight: bold;
     text-decoration: underline;
+    margin: 0;
+    display: block;
 }
 
 .friend__city {
     color: #373737;
     font-size: 11px;
     font-weight: 400;
+    margin: 4px 0 0 0;
 }
 
 .friend__online {
     color: #2f8a26;
     font-size: 10px;
     font-style: italic;
+    position: absolute;
+    margin: 0;
+    bottom: 0;
 }
 
 // ****************************

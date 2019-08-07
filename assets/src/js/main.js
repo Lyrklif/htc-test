@@ -8,5 +8,6 @@
 @@include('assets/src/js/_tabs.js')						// Переключение вкладок
 @@include('assets/src/js/_scrollbar.js') 				// Скроллбар 
 @@include('assets/src/js/_interest.js') 				// Интересы  
+@@include('assets/src/js/_editText.js') 				// Изменить текст при клике на него  
  
 

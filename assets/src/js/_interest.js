@@ -12,6 +12,16 @@ $(document).ready(function() {
 });
 
 
+// $('#FORM-ADD-INTERESTS').submit(function (e) {
+//     e.preventDefault();
+//     $.ajax({
+//         // url: "send_interests.php",
+//         // type: "POST",
+//         // data: $('#FORM-ADD-INTERESTS').serialize()
+//     });
+// });
+
+
 // Добавить интерес в список при клике по кнопке "Добавить интерес"
 $(document).ready(function() {
     // Нажание на кнопку "Добавить интерес"
