@@ -1,28 +1,40 @@
+
+// При клике на редактируемый текст (информация о пользователе)
+// появляется input, в котором можно изменить данные.
+// После этого новый текст изменяется и на странице
 $(document).ready(function() {
     $('.editText').on('click', function(event) {
 
-        var oldText = $(this).html();
-        var editInput = '<input class="newText" type="text" name="editableText" value="' + oldText + '">';
+    	// Редактируемый элемент, по которому кликнули
+    	var editTextClick = $(this);
 
-        // Добавить элемент в начало списка
-        $(this).after(editInput);
+        // Записать в переменную старый текст элемента
+        var oldText = editTextClick.html();
 
-        var newText = $(this).find('.newText');
+        // Создание input для ввода новой информации
+        var editInput =
+            '<input class="newText" type="text" name="editableText" value="' + oldText + '">';
 
-        $('.newText').focus();
-        // console.log(newText);
+        // Добавить input после текста
+        editTextClick.after(editInput);
 
+        // Найти созданный input
+        var newText = editTextClick.next('.newText');
 
-       
-		// Событие когда элемент получил фокус
-		// $(newText).focus(function(){
-		//     alert('Фокус установлен');
-		// });
+        // Фокус на созданном input 
+        newText.focus();
 
-		// Когда элемент теряет фокус
-		newText.blur(function(){
-		    console.log('Фокус снят');
-		});
+        // Когда элемент теряет фокус
+        newText.blur(function() {
+
+        	// Новый текст, который пользователь ввел/изменил в input 
+        	let newTextVal = newText.val();
+
+        	// Записать новый текст в тег
+        	editTextClick.text(newTextVal);
+
+            // удалить input
+            newText.remove();
+        });
     });
 });
-
