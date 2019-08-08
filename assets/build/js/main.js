@@ -11153,7 +11153,21 @@ const INFO_USER_DEFALT = {
 	name: 'Виталя Гора',
 	tel: '+7 (440) 554-32-12',
 	email: 'vitalya@gora.ru'
-};				// Сохранение введённых пользователем данных
+};
+
+// Преобразовать объект (данные о пользователе) в JSON 
+var userData = JSON.stringify(INFO_USER_DEFALT); 
+
+// Зписать данные о пользователе в localStorage 
+localStorage.setItem("userData", userData); 
+
+
+// Очистить localStorage
+$('#localStorageClear').on('click', function(event) {
+	event.preventDefault();
+	/* Act on the event */
+	localStorage.clear();
+});				// Сохранение введённых пользователем данных
 // Переключение вкладок
 $(document).ready(function() {
     $('.nav-tabs__item').on('click', '.nav-tabs__link:not(.active)', function(event) {
@@ -11228,15 +11242,14 @@ function removeInterestForClick() {
         $(this).remove();
     });
 }; 				// Интересы  
-
 // При клике на редактируемый текст (информация о пользователе)
 // появляется input, в котором можно изменить данные.
 // После этого новый текст изменяется и на странице
 $(document).ready(function() {
     $('.editText').on('click', function(event) {
 
-    	// Редактируемый элемент, по которому кликнули
-    	var editTextClick = $(this);
+        // Редактируемый элемент, по которому кликнули
+        var editTextClick = $(this);
 
         // Записать в переменную старый текст элемента
         var oldText = editTextClick.html();
@@ -11254,19 +11267,34 @@ $(document).ready(function() {
         // Фокус на созданном input 
         newText.focus();
 
+        // При нажатии на Enter, когда input в фокусе
+        newText.keydown(function(event) {
+            if (event.which == 13) {
+                closeInput();
+            }
+        });
+
         // Когда элемент теряет фокус
         newText.blur(function() {
+            closeInput();
+        });
 
-        	// Новый текст, который пользователь ввел/изменил в input 
-        	let newTextVal = newText.val();
+        // Отобразить новый текст на тсранице и закрыть input
+        function closeInput() {
+            // Новый текст, который пользователь ввел/изменил в input 
+            let newTextVal = newText.val();
 
-        	// Записать новый текст в тег
-        	editTextClick.text(newTextVal);
+            // Записать новый текст в тег
+            editTextClick.text(newTextVal);
+
+            localStorage.setItem('profileName', newTextVal);
 
             // удалить input
             newText.remove();
-        });
+        };
     });
-}); 				// Изменить текст при клике на него  
+});
+
+ 				// Изменить текст при клике на него  
  
 
