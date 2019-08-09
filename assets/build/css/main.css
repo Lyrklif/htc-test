@@ -1125,7 +1125,7 @@ td.editBox {
 
 .editBox {
   position: relative; }
-  .editBox .newText {
+  .editBox .inputEditUserInfo {
     position: absolute;
     top: 0;
     padding: 2px 5px;
@@ -1133,6 +1133,9 @@ td.editBox {
     height: 100%;
     border: 1px solid #1574af;
     border-radius: 3px; }
+    .editBox .inputEditUserInfo:invalid {
+      border: 1px solid red;
+      background: #fff5f2; }
   .editBox p.editText {
     margin: 0; }
 

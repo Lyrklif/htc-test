@@ -1,5 +1,5 @@
+
 // Переключение вкладок
-$(document).ready(function() {
     $('.nav-tabs__item').on('click', '.nav-tabs__link:not(.active)', function(event) {
         event.preventDefault();
         $('.nav-tabs__link').removeClass('active');
@@ -7,4 +7,3 @@ $(document).ready(function() {
         $('.profile-block__section').hide();
         $(this.hash).show();
     });
-});

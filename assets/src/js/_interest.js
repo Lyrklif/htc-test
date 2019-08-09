@@ -1,15 +1,12 @@
+
 // Удалить интерес при клике на него
-$(document).ready(function() {
     removeInterestForClick();
-});
 
 
 // В поле ввода интерсов можно вводить только строчные буквы
-$(document).ready(function() {
     $('.profile__input-interest').bind('input', function() {
         $(this).val($(this).val().toLowerCase());
     });
-});
 
 
 // $('#FORM-ADD-INTERESTS').submit(function (e) {
@@ -23,7 +20,6 @@ $(document).ready(function() {
 
 
 // Добавить интерес в список при клике по кнопке "Добавить интерес"
-$(document).ready(function() {
     // Нажание на кнопку "Добавить интерес"
     $('.profile__add-interest').click(function() {
         // Получить содержимое текстового поля ввода интересов
@@ -46,7 +42,7 @@ $(document).ready(function() {
         // Удалить интерес при клике на него
         removeInterestForClick();
     });
-});
+
 
 
 // Удалить интерес из списка при клике на него
