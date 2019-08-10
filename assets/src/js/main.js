@@ -1,11 +1,12 @@
+/**
+ * Подключение всех js-файлов
+ */
+
+
 // Подключение бибилиотек
 @@include('assets/src/js/_libs/jquery.js')
-@@include('assets/src/js/_libs/jquery.scrollbar.js')
-@@include('assets/src/js/_libs/jquery.inputmask.js')
-@@include('assets/src/js/_libs/inputmask.binding.js')
-
-//jquery.inputmask
-//inputmask.binding
+@@include('assets/src/js/_libs/jquery.scrollbar.js') // Для стилизации скроллбара
+@@include('assets/src/js/_libs/jquery.maskedinput.min.js') // Маска для input
 
 
 
