@@ -1,7 +1,10 @@
 /**
- * При нажатии на ИМЯ/ТЕЛЕФОН/EMAIL пользователя появляется input,
- * в котором можно изменить эти данные
+ * При нажатии на ИМЯ / ТЕЛЕФОН / EMAIL пользователя появляется input,
+ * в котором можно изменить эти данные.
+ * После внесения изменений данные проверяются на валидность
+ * и отображаются вместо старых, также записываются в localStorage
  *
+ * ================================================================
  * Функции: 
  * procedureCloseInput - Порядок действий при попытке закрыть input (нажатие Enter, потеря фокуса)
  * isChangedText - Отличается ли введённый в input текст от старого?
@@ -10,21 +13,27 @@
  * isValidInputName - Проверка нового имени на валидность
  * isValidInputTel - Проверка нового телефона на валидность
  * isValidInputEmail - Проверка нового email на валидность
- * 
- * 
  */
 
 
 
-// Изменение ИМЕНИ пользователя
+/**
+ * Изменение ИМЕНИ пользователя
+ */
 $('#USER_NAME').on('click', function(event) {
-    let name = 'name';
+    let name = 'name'; // Название элемента localStorage, в который нужно записать новое значение
     var editableElement = $(this); // Редактируемый элемент, на который нажали
     var oldText = editableElement.html(); // Старый текст элемента
 
     // input для ввода новой информации
     editInput =
-        '<input class="inputEditUserInfo" type="text" name="newUserName" minlength="2" maxlength="20" title="От 2 до 20 символов" value="' + oldText + '">';
+        '<input class="inputEditUserInfo"' +
+        'type="text"' +
+        'name="newUserName"' +
+        'minlength="2"' +
+        'maxlength="20"' +
+        'title="Имя должно содержать от 2 до 20 символов"' +
+        'value="' + oldText + '">';
 
 
     editableElement.after(editInput); // Добавить input после текста
@@ -46,20 +55,26 @@ $('#USER_NAME').on('click', function(event) {
 });
 
 
-// Изменение ТЕЛЕФОНА пользователя
+/**
+ * Изменение ТЕЛЕФОНА пользователя
+ */
 $('#USER_TEL').on('click', function(event) {
-    let tel = 'tel';
+    let tel = 'tel'; // Название элемента localStorage, в который нужно записать новое значение
     var editableElement = $(this); // Редактируемый элемент, на который нажали
     var oldText = editableElement.html(); // Старый текст элемента
 
     // input для ввода новой информации
     editInput =
-        '<input class="inputEditUserInfo" type="tel" name="newUserTel" minlength="18" maxlength="18" title="В формате +7 (999) 999-99-99" value="' + oldText + '">';
+        '<input class="inputEditUserInfo"' +
+        'type="tel"' +
+        'name="newUserTel"' +
+        'title="Введите номер телефона в формате: +7 (555) 555-55-55"' +
+        'value="' + oldText + '">';
 
 
     editableElement.after(editInput); // Добавить input после текста
     inputEditUserInfo = editableElement.next('.inputEditUserInfo'); // Найти созданный input
-    inputEditUserInfo.inputmask('+7 (999) 999-99-99');
+    inputEditUserInfo.mask("+7 (999) 999-99-99", { autoclear: false }); // Маска для ввода телефона
     inputEditUserInfo.focus(); // Поставить фокус на созданном input 
 
 
@@ -77,39 +92,26 @@ $('#USER_TEL').on('click', function(event) {
 });
 
 
-// Изменение EMAIL пользователя
+/**
+ * Изменение EMAIL пользователя
+ */
 $('#USER_EMAIL').on('click', function(event) {
-    let email = 'email';
+    let email = 'email'; // Название элемента localStorage, в который нужно записать новое значение
     var editableElement = $(this); // Редактируемый элемент, на который нажали
     var oldText = editableElement.html(); // Старый текст элемента
 
     // input для ввода новой информации
     editInput =
-        '<input class="inputEditUserInfo" type="email" name="newUserEmail" minlength="6" maxlength="20" value="' + oldText + '">';
+        '<input class="inputEditUserInfo"' +
+        'type="email"' +
+        'name="newUserEmail"' +
+        'maxlength="20"' +
+        'title="Адрес электронной почты может содержать до 20 символов"' +
+        'value="' + oldText + '">';
 
 
     editableElement.after(editInput); // Добавить input после текста
     inputEditUserInfo = editableElement.next('.inputEditUserInfo'); // Найти созданный input
-    // inputEditUserInfo.inputmask('email');
-    inputEditUserInfo.inputmask({
-        mask: "email",
-        greedy: false,
-        onBeforePaste: function(pastedValue, opts) {
-            pastedValue = pastedValue.toLowerCase();
-            return pastedValue.replace("mailto:", "");
-        },
-        definitions: {
-            '*': {
-                validator: "[/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/]",
-                casing: "lower"
-            }
-        }
-    });
-    // inputEditUserInfo.attr({
-    //     data - inputmask - regex: '[/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/]',
-    //     title: 'Введите адрес электронной почты в формате: vitalya@gora.ru'
-    // });
-
     inputEditUserInfo.focus(); // Поставить фокус на созданном input 
 
 
@@ -144,8 +146,6 @@ function procedureCloseInput(editableElement, inputEditUserInfo, oldText, nameFu
         if (isValidInput) {
             writeNewText(editableElement, newText, localStorageItemName); // Записать новый текст
             inputEditUserInfo.remove(); // удалить input
-        } else {
-            // inputEditUserInfo.addClass('notValid');
         }
     } else {
         inputEditUserInfo.remove(); // удалить input
@@ -159,19 +159,21 @@ function procedureCloseInput(editableElement, inputEditUserInfo, oldText, nameFu
  * @return {Boolean}         [true, если новый текст валиден]
  */
 function isValidInputName(newText) {
-    let isValid = false;
-
-    let newTextLength = newText.length;
+    let isValid = false,
+        newTextLength = newText.length; // Количество лимволов в новом тексте
 
     if (newTextLength >= 2 && newTextLength <= 20) {
         isValid = true;
     }
 
-    console.log('Введённое имя:', newText);
-    console.log('Количество символов:', newTextLength);
-    console.log('Валидность введённых данных:', isValid);
+    console.log(
+        'Введённое имя:', newText,
+        '\nКоличество символов:', newTextLength,
+        '\nВалидность введённых данных:', isValid,
+        '\n====================');
 
-    return isValid;
+
+    return isValid; // true, если новый текст валиден
 };
 
 
@@ -181,21 +183,23 @@ function isValidInputName(newText) {
  * @return {Boolean}         [true, если новый текст валиден]
  */
 function isValidInputTel(newText) {
-    let isValid = false;
-    let newTextLength = newText.length;
+    let isValid = false,
+        newTextLength = newText.length; // Количество лимволов в новом тексте
 
-    let isValidFormat = /^\+[7]{1}\ \([\d]{3}\)\ [\d]{3}-[\d]{2}-[\d]{2}$/.test(newText);
-    telephoneCheck(newText);
+    let isValidFormat =
+        /\+7[\s]\([\d]{3}\)[\s][\d]{3}[\-][\d]{2}[\-][\d]{2}$/.test(newText);
     if (newTextLength == 18 && isValidFormat) {
         isValid = true;
     }
 
-    console.log('Введённый телефон:', newText);
-    console.log('Верен ли формат телефона:', isValidFormat);
-    console.log('Количество символов:', newTextLength);
-    console.log('Валидность введённых данных:', isValid);
+    console.log(
+        'Введённый телефон:', newText,
+        '\nВерен ли формат телефона:', isValidFormat,
+        '\nКоличество символов:', newTextLength,
+        '\nВалидность введённых данных:', isValid,
+        '\n====================');
 
-    return isValid;
+    return isValid; // true, если новый текст валиден
 };
 
 
@@ -205,21 +209,24 @@ function isValidInputTel(newText) {
  * @return {Boolean}         [true, если новый текст валиден]
  */
 function isValidInputEmail(newText) {
-    let isValid = false;
-    newTextLength = newText.length;
+    let isValid = false,
+        newTextLength = newText.length; // Количество лимволов в новом тексте
 
-    let isValidFormat = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(newText);
+    let isValidFormat =
+        /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(newText);
 
-    if (newTextLength >= 6 && newTextLength <= 20 && isValidFormat) {
+    if (newTextLength <= 20 && isValidFormat) {
         isValid = true;
     }
 
-    console.log('Введённый email:', newText);
-    console.log('Верен ли формат email:', isValidFormat);
-    console.log('Количество символов:', newTextLength);
-    console.log('Валидность введённых данных:', isValid);
+    console.log(
+        'Введённый email:', newText,
+        '\nВерен ли формат email:', isValidFormat,
+        '\nКоличество символов:', newTextLength,
+        '\nВалидность введённых данных:', isValid,
+        '\n====================');
 
-    return isValid;
+    return isValid; // true, если новый текст валиден
 };
 
 
@@ -232,6 +239,7 @@ function isValidInputEmail(newText) {
 function isChangedText(oldText, newText) {
     let isNew = false;
 
+    // Если новый текст отличается от старого
     if (oldText != newText) {
         isNew = true;
     };
