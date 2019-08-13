@@ -1,6 +1,8 @@
+**Ссылка** - https://lyrklif.github.io/htc-test/assets/build/  
+
+
 # htc-test
 Тестовое задание для стажировки в ЦВТ по направлению фронтенд.  
-**Ссылка** - https://lyrklif.github.io/htc-test/assets/build/  
 
 
 Для запуска проекта ввести в командную строку:  
