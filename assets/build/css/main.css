@@ -928,8 +928,7 @@ body {
   position: relative; }
   .avatar img {
     margin: 0;
-    display: block;
-    position: absolute; }
+    display: block; }
 
 .btn-add {
   font-size: 12px;
