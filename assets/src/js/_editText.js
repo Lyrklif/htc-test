@@ -141,13 +141,16 @@ $('#USER_EMAIL').on('click', function(event) {
 function procedureCloseInput(editableElement, inputEditUserInfo, oldText, nameFunctionIsValid, localStorageItemName) {
     let newText = inputEditUserInfo.val(); // Текст, который пользователь ввёл в input 
     let changedText = isChangedText(oldText, newText); // Отличается ли текст от старого? 
+    // Если текст отличается от старого
     if (changedText) {
         let isValidInput = nameFunctionIsValid(newText); // Проверка нового имени на валидность
         if (isValidInput) {
             writeNewText(editableElement, newText, localStorageItemName); // Записать новый текст
             inputEditUserInfo.remove(); // удалить input
         }
-    } else {
+    }
+    // Если текст НЕ отличается от старого
+    else {
         inputEditUserInfo.remove(); // удалить input
     };
 };
@@ -160,7 +163,7 @@ function procedureCloseInput(editableElement, inputEditUserInfo, oldText, nameFu
  */
 function isValidInputName(newText) {
     let isValid = false,
-        newTextLength = newText.length; // Количество лимволов в новом тексте
+        newTextLength = newText.length; // Количество символов в новом тексте
 
     if (newTextLength >= 2 && newTextLength <= 20) {
         isValid = true;
