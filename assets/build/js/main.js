@@ -10367,7 +10367,7 @@ if ( !noGlobal ) {
 
 
 return jQuery;
-} );
+} ); // jquery 3.3.1
 /**
  * jQuery CSS Customizable Scrollbar
  *
@@ -11163,25 +11163,40 @@ return jQuery;
 // Мой код
 $(document).ready(function() {
     
-// Информация о пользователе по-умолчанию
-const INFO_USER_DEFALT = {
-	name: 'Виталя Гора',
-	tel: '+7 (440) 554-32-12',
-	email: 'vitalya@gora.ru'
+/**
+ * Изменить отображаемую информацию о пользователе
+ */
+changeUserInfo();
+
+
+/**
+ * Изменить отображаемую информацию о пользователе
+ * Если ранее были изменены данные о пользователе, то 
+ * взять эти данные из localStorage и внести на страницу
+ */
+function changeUserInfo() {
+    // Если существует новая версия ИМЕНИ, то внести её на страницу
+    if (localStorage.getItem('userData.name')) {
+        $('#USER_NAME').html(localStorage.getItem('userData.name'));
+    };
+
+    // Если существует новая версия ТЕЛЕФОНА, то внести её на страницу
+    if (localStorage.getItem('userData.tel')) {
+        $('#USER_TEL').html(localStorage.getItem('userData.tel'));
+    };
+
+    // Если существует новая версия EMAIL, то внести её на страницу
+    if (localStorage.getItem('userData.email')) {
+        $('#USER_EMAIL').html(localStorage.getItem('userData.email'));
+    };
 };
 
-// Преобразовать объект (данные о пользователе) в JSON 
-var userData = JSON.stringify(INFO_USER_DEFALT); 
 
-// Зписать данные о пользователе в localStorage 
-localStorage.setItem("userData", userData); 
-
-
-// Очистить localStorage
+/**
+ * Очистить localStorage при нажатии на кнопку под профайлом пользователя
+ */
 $('#localStorageClear').on('click', function(event) {
-	event.preventDefault();
-	/* Act on the event */
-	localStorage.clear();
+    localStorage.clear(); // очистить localStorage
 }); // Сохранение введённых пользователем данных
     
 // Переключение вкладок
