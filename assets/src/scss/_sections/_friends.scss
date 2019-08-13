@@ -5,7 +5,6 @@
 .friends__list {
     max-height: $friends-max-height-mobile;
     overflow-y: scroll;
-    // text-align: justify;
 
     @include media-breakpoint-up(sm) {
         max-height: $friends-max-height;
@@ -13,10 +12,22 @@
 }
 
 .friends__item {
-    display: inline-flex;
+    display: inline-block;
     margin-bottom: 31px;
-    max-width: $friends-item-width;
-    width: $friends-item-width;
+    width: 100%;
+
+    a {
+        display: flex;
+    }
+
+    &:hover {
+        background: lightgrey;
+    }
+
+    @include media-breakpoint-up(sm) {
+        max-width: $friends-item-width;
+        width: $friends-item-width;
+    }
 }
 
 .friend__photo-wp {
@@ -36,7 +47,7 @@
 }
 
 .friend__name {
-    color: #1574af;
+    color: $link-color;
     font-size: 13px;
     font-weight: bold;
     text-decoration: underline;
@@ -45,14 +56,14 @@
 }
 
 .friend__city {
-    color: #373737;
+    color: $friends-city-color;
     font-size: 11px;
     font-weight: 400;
     margin: 4px 0 0 0;
 }
 
 .friend__online {
-    color: #2f8a26;
+    color: $online-status-color;
     font-size: 10px;
     font-style: italic;
     position: absolute;
@@ -64,19 +75,19 @@
 //  Переопределение scrollbar
 
 .scrollbar-outer>.scroll-element .scroll-bar {
-    background-color: #0f7bb1;
+    background-color: $scroll-bar-color;
 
     &:hover {
-        background-color: darken(#0f7bb1, 5%);
+        background-color: darken($scroll-bar-color, 5%);
     }
 }
 
 .scrollbar-outer>.scroll-element.scroll-draggable .scroll-bar {
-    background-color: darken(#0f7bb1, 5%);
+    background-color: darken($scroll-bar-color, 5%);
 }
 
 .scrollbar-outer>.scroll-element .scroll-element_track {
-    background-color: #ededed;
+    background-color: $scroll-bar-bg-color;
 }
 
 .scrollbar-outer>.scroll-element.scroll-y .scroll-element_outer {
