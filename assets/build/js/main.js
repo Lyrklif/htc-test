@@ -11229,16 +11229,16 @@ $('.profile__input-interest').bind('input', function() {
  */
 $('.profile__add-interest').click(function() {
     // Содержимое текстового поля ввода интересов
-    let textFromInput = $('.profile__input-interest').val();
+    var textFromInput = $('.profile__input-interest').val();
 
     // Проверка введённого текста на валидность  
     // (от 2 до 20 символов)
-    let validText = isValidInputName(textFromInput);
+    var validText = isValidInputName(textFromInput);
 
     // Если поле ввода не пустое
     if (!(textFromInput === '') && validText) {
         // Новый элемент списка интересов
-        let newInteresBlock = '<li class="interests__item">' + textFromInput + '</li>';
+        var newInteresBlock = '<li class="interests__item">' + textFromInput + '</li>';
 
         // Добавить элемент в начало списка
         $('.profile__interests').prepend(newInteresBlock);
@@ -11286,7 +11286,7 @@ function removeInterestForClick() {
  * Изменение ИМЕНИ пользователя
  */
 $('#USER_NAME').on('click', function(event) {
-    let name = 'name'; // Название элемента localStorage, в который нужно записать новое значение
+    var name = 'name'; // Название элемента localStorage, в который нужно записать новое значение
     var editableElement = $(this); // Редактируемый элемент, на который нажали
     var oldText = editableElement.html(); // Старый текст элемента
 
@@ -11324,7 +11324,7 @@ $('#USER_NAME').on('click', function(event) {
  * Изменение ТЕЛЕФОНА пользователя
  */
 $('#USER_TEL').on('click', function(event) {
-    let tel = 'tel'; // Название элемента localStorage, в который нужно записать новое значение
+    var tel = 'tel'; // Название элемента localStorage, в который нужно записать новое значение
     var editableElement = $(this); // Редактируемый элемент, на который нажали
     var oldText = editableElement.html(); // Старый текст элемента
 
@@ -11361,7 +11361,7 @@ $('#USER_TEL').on('click', function(event) {
  * Изменение EMAIL пользователя
  */
 $('#USER_EMAIL').on('click', function(event) {
-    let email = 'email'; // Название элемента localStorage, в который нужно записать новое значение
+    var email = 'email'; // Название элемента localStorage, в который нужно записать новое значение
     var editableElement = $(this); // Редактируемый элемент, на который нажали
     var oldText = editableElement.html(); // Старый текст элемента
 
@@ -11404,11 +11404,11 @@ $('#USER_EMAIL').on('click', function(event) {
  * @param  {[type]} localStorageItemName [Название элемента localStorage, в который нужно записать новое значение]
  */
 function procedureCloseInput(editableElement, inputEditUserInfo, oldText, nameFunctionIsValid, localStorageItemName) {
-    let newText = inputEditUserInfo.val(); // Текст, который пользователь ввёл в input 
-    let changedText = isChangedText(oldText, newText); // Отличается ли текст от старого? 
+    var newText = inputEditUserInfo.val(); // Текст, который пользователь ввёл в input 
+    var changedText = isChangedText(oldText, newText); // Отличается ли текст от старого? 
     // Если текст отличается от старого
     if (changedText) {
-        let isValidInput = nameFunctionIsValid(newText); // Проверка нового имени на валидность
+        var isValidInput = nameFunctionIsValid(newText); // Проверка нового имени на валидность
         if (isValidInput) {
             writeNewText(editableElement, newText, localStorageItemName); // Записать новый текст
             inputEditUserInfo.remove(); // удалить input
@@ -11427,7 +11427,7 @@ function procedureCloseInput(editableElement, inputEditUserInfo, oldText, nameFu
  * @return {Boolean}         [true, если новый текст валиден]
  */
 function isValidInputName(newText) {
-    let isValid = false,
+    var isValid = false,
         newTextLength = newText.length; // Количество символов в новом тексте
 
     if (newTextLength >= 2 && newTextLength <= 20) {
@@ -11451,10 +11451,10 @@ function isValidInputName(newText) {
  * @return {Boolean}         [true, если новый текст валиден]
  */
 function isValidInputTel(newText) {
-    let isValid = false,
+    var isValid = false,
         newTextLength = newText.length; // Количество лимволов в новом тексте
 
-    let isValidFormat =
+    var isValidFormat =
         /\+7[\s]\([\d]{3}\)[\s][\d]{3}[\-][\d]{2}[\-][\d]{2}$/.test(newText);
     if (newTextLength == 18 && isValidFormat) {
         isValid = true;
@@ -11477,10 +11477,10 @@ function isValidInputTel(newText) {
  * @return {Boolean}         [true, если новый текст валиден]
  */
 function isValidInputEmail(newText) {
-    let isValid = false,
+    var isValid = false,
         newTextLength = newText.length; // Количество лимволов в новом тексте
 
-    let isValidFormat =
+    var isValidFormat =
         /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(newText);
 
     if (newTextLength <= 20 && isValidFormat) {
@@ -11505,7 +11505,7 @@ function isValidInputEmail(newText) {
  * @return {Boolean}         [true, если введённый текст отличается от старого]
  */
 function isChangedText(oldText, newText) {
-    let isNew = false;
+    var isNew = false;
 
     // Если новый текст отличается от старого
     if (oldText != newText) {

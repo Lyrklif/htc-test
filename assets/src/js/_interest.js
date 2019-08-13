@@ -16,16 +16,16 @@ $('.profile__input-interest').bind('input', function() {
  */
 $('.profile__add-interest').click(function() {
     // Содержимое текстового поля ввода интересов
-    let textFromInput = $('.profile__input-interest').val();
+    var textFromInput = $('.profile__input-interest').val();
 
     // Проверка введённого текста на валидность  
     // (от 2 до 20 символов)
-    let validText = isValidInputName(textFromInput);
+    var validText = isValidInputName(textFromInput);
 
     // Если поле ввода не пустое
     if (!(textFromInput === '') && validText) {
         // Новый элемент списка интересов
-        let newInteresBlock = '<li class="interests__item">' + textFromInput + '</li>';
+        var newInteresBlock = '<li class="interests__item">' + textFromInput + '</li>';
 
         // Добавить элемент в начало списка
         $('.profile__interests').prepend(newInteresBlock);
